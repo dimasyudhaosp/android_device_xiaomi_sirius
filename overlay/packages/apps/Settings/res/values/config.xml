@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Use only if devices have variable intensity support for haptics-->
+    <bool name="config_vibration_supports_multiple_intensities">true</bool>
+
+    <!-- If device supports battery health options -->
+    <bool name="config_supportBatteryHealth">true</bool>
+    <!-- <string name="config_batChargeCycle">path</string> -->
+    <!-- <string name="config_batDesCap">path</string> -->
+    <!-- <string name="config_batCurCap">path</string> -->
+</resources>

@@ -7,6 +7,10 @@
 $(call inherit-product, device/xiaomi/sirius/device.mk)
 
 # Inherit some common RR stuff.
+RR_BUILDTYPE := Unofficial
+BUILD_RR_WALLPAPERS := false
+GAPPS := ""
+TARGET_FACE_UNLOCK_SUPPORTED := true
 $(call inherit-product, vendor/rr/config/common_full_phone.mk)
 
 # Device identifier. This must come after all inclusions.
