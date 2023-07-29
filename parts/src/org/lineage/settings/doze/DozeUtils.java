@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.mokee.settings.doze;
+package org.rr.settings.doze;
 
 import android.content.Context;
 import android.content.Intent;
