@@ -5,8 +5,9 @@
 #
 
 BOARD_VENDOR := xiaomi
+TARGET_OTA_ASSERT_DEVICE := sirius
 
-DEVICE_PATH := device/xiaomi/sirius
+DEVICE_PATH := device/$(BOARD_VENDOR)/$(TARGET_OTA_ASSERT_DEVICE)
 
 # Architecture
 TARGET_ARCH := arm64
@@ -17,11 +18,11 @@ TARGET_CPU_VARIANT := generic
 TARGET_CPU_VARIANT_RUNTIME := kryo385
 
 TARGET_2ND_ARCH := arm
-TARGET_2ND_ARCH_VARIANT := armv8-a
+TARGET_2ND_ARCH_VARIANT := $(TARGET_ARCH_VARIANT)
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := generic
-TARGET_2ND_CPU_VARIANT_RUNTIME := kryo385
+TARGET_2ND_CPU_VARIANT := $(TARGET_CPU_VARIANT)
+TARGET_2ND_CPU_VARIANT_RUNTIME := $(TARGET_CPU_VARIANT_RUNTIME)
 
 TARGET_USES_64_BIT_BINDER := true
 PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)
@@ -32,27 +33,33 @@ TARGET_NO_BOOTLOADER := true
 
 # Kernel
 BOARD_KERNEL_BASE := 0x00000000
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.usbcontroller=a600000.dwc3 androidboot.selinux=permissive
-BOARD_KERNEL_CMDLINE += video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1
-BOARD_KERNEL_CMDLINE += service_locator.enable=1 androidboot.configfs=true firmware_class.path=/vendor/firmware_mnt/image loop.max_part=7 swiotlb=1
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom \
+                        androidboot.usbcontroller=a600000.dwc3 \
+                        androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE += video=vfb:640x400,bpp=32,memsize=3072000 \
+                        msm_rtb.filter=0x237 \
+                        ehci-hcd.park=3 \
+                        lpm_levels.sleep_disabled=1 \
+                        service_locator.enable=1 \
+                        androidboot.configfs=true \
+                        firmware_class.path=/vendor/firmware_mnt/image \
+                        loop.max_part=7 \
+                        swiotlb=1
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET := 0x01000000
-TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_SOURCE := kernel/xiaomi/sdm710
-TARGET_KERNEL_CONFIG := sirius_defconfig
+TARGET_KERNEL_ARCH := $(TARGET_ARCH)
+TARGET_KERNEL_SOURCE := kernel/$(BOARD_VENDOR)/$(TARGET_OTA_ASSERT_DEVICE)
+TARGET_KERNEL_CONFIG := $(TARGET_OTA_ASSERT_DEVICE)_defconfig
 
 # Platform
-TARGET_BOARD_PLATFORM := sdm710
+TARGET_BOARD_PLATFORM := $(TARGET_BOOTLOADER_BOARD_NAME)
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno616
 
 # APEX
 DEXPREOPT_GENERATE_APEX_IMAGE := true
-
-# Assert
-TARGET_OTA_ASSERT_DEVICE := sirius
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
@@ -219,4 +226,4 @@ WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit from the proprietary stuffs
--include vendor/xiaomi/sirius/BoardConfigVendor.mk
+-include $(TARGET_COPY_OUT_VENDOR)/$(BOARD_VENDOR)/$(TARGET_OTA_ASSERT_DEVICE)/BoardConfigVendor.mk
