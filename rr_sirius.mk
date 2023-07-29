@@ -10,17 +10,17 @@ $(call inherit-product, device/xiaomi/sirius/device.mk)
 $(call inherit-product, vendor/rr/config/common_full_phone.mk)
 
 # Device identifier. This must come after all inclusions.
-PRODUCT_NAME := rr_sirius
 PRODUCT_DEVICE := sirius
+PRODUCT_NAME := rr_$(PRODUCT_DEVICE)
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := MI 8 SE
-PRODUCT_MANUFACTURER := Xiaomi
+PRODUCT_MANUFACTURER := $(PRODUCT_BRAND)
 
-BUILD_FINGERPRINT := "Xiaomi/sirius/sirius:9/PKQ1.181121.001/V11.0.3.0.PEBCNXM:user/release-keys"
+BUILD_FINGERPRINT := "$(PRODUCT_BRAND)/$(PRODUCT_DEVICE)/$(PRODUCT_DEVICE):10/QKQ1.190828.002/V12.5.1.0.QEBCNXM:user/release-keys"
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="sirius-user 9 PKQ1.181121.001 V11.0.3.0.PEBCNXM release-keys" \
-    PRODUCT_NAME="sirius" \
-    TARGET_DEVICE="sirius"
+    PRIVATE_BUILD_DESC="$(PRODUCT_DEVICE)-user 10 QKQ1.190828.002 V12.5.1.0.QEBCNXM release-keys" \
+    PRODUCT_NAME="$(PRODUCT_DEVICE)" \
+    TARGET_DEVICE="$(PRODUCT_DEVICE)"
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
