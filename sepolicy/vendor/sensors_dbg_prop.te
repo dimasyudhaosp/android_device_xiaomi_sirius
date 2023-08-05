@@ -1,0 +1,2 @@
+get_prop(hal_sensors_default, sensors_dbg_prop)
+get_prop(sensors, sensors_dbg_prop)
